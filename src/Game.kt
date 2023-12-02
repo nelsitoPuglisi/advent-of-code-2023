@@ -1,4 +1,18 @@
+import kotlin.math.max
+
 data class Game(val id: Int, val rounds: List<Round>) {
+    fun minBagRequired(): Bag {
+        var maxblue = 0
+        var maxred = 0
+        var maxgreen = 0
+        rounds.forEach { round ->
+            maxblue = max( round.blue, maxblue)
+            maxred = max( round.red, maxred)
+            maxgreen = max( round.green, maxgreen)
+        }
+        return Bag(maxblue, maxred, maxgreen)
+    }
+
     companion object {
         fun parse(input: String): Game {
             val id = input.substringAfter("Game ").substringBefore(":").toInt()
@@ -24,4 +38,8 @@ data class Game(val id: Int, val rounds: List<Round>) {
 
 data class Round(val blue: Int = 0, val red: Int = 0, val green: Int = 0)
 
-data class Bag(val blue: Int = 0, val red: Int = 0, val green: Int = 0)
+data class Bag(val blue: Int = 0, val red: Int = 0, val green: Int = 0) {
+    fun power(): Int {
+        return blue * red * green
+    }
+}

@@ -53,4 +53,53 @@ class Day02KtTest {
         val expected = 8
         assertThat(actual).isEqualTo(expected)
     }
+
+    @Test
+    fun `calculate min bag`() {
+        //given
+        val game = Game(
+            id = 1, listOf(
+                Round(blue = 3, red = 4), Round(red = 1, green = 2, blue = 6), Round(green = 2)
+            ))
+        //when
+        val actual = game.minBagRequired()
+        //then
+        val expected = Bag(blue = 6, red = 4, green = 2)
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `power of set of cubes`() {
+        //given
+        val bag = Bag(blue = 6, red = 4, green = 2)
+        //when
+        val actual = bag.power()
+        //then
+        val expected = 48
+        assertThat(actual).isEqualTo(expected)
+    }
+
+
+
+    @Test
+    fun `power of set of cubes 2`() {
+        //given
+        val bag = Bag(blue = 4, red = 3, green = 1)
+        //when
+        val actual = bag.power()
+        //then
+        val expected = 12
+        assertThat(actual).isEqualTo(expected)
+    }
+
+    @Test
+    fun `power of set of cubes 3`() {
+        //given
+        val bag = Bag(blue = 6, red = 13, green = 20)
+        //when
+        val actual = bag.power()
+        //then
+        val expected = 1560
+        assertThat(actual).isEqualTo(expected)
+    }
 }
